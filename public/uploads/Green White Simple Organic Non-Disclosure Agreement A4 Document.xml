@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<akomaNtoso>
+  <agreement wId="/agreement/nda/2024-07-15">
+    <meta>
+      <identification source="#court">
+        <FRBRWork>
+          <FRBRcountry value="USA"/>
+          <FRBRjurisdiction value="FederalCourt"/>
+          <FRBRdate date=""/>
+          <FRBRlanguage language="en"/>
+          <FRBRauthor href="#JohnDoe"/>
+          <FRBRauthor href="#JaneSmith"/>
+          <FRBRthis value="/agreement/nda/2024-07-15"/>
+        </FRBRWork>
+      </identification>
+    </meta>
+    <preface>
+      <docTitle>Non-Disclosure Agreement (NDA)</docTitle>
+    </preface>
+    <body>
+      <article eId="art1">
+        <heading>1. Purpose</heading>
+        <paragraph>The parties agree to protect confidential information...</paragraph>
+      </article>
+      <article eId="art2">
+        <heading>2. Obligations</heading>
+        <paragraph>The Receiving Party agrees not to disclose any information...</paragraph>
+      </article>
+    </body>
+  </agreement>
+</akomaNtoso>
