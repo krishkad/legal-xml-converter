@@ -151,8 +151,8 @@ export function HeroSection2() {
                   {/* XML Side */}
                   <div className="p-6 bg-muted/10">
                     <div className="flex items-center gap-2 mb-4">
-                      <FileCode2 className="w-4 h-4 text-primary" />
-                      <span className="text-xs font-medium text-primary uppercase tracking-wider">
+                      <FileCode2 className="w-4 h-4 text-blue-500" />
+                      <span className="text-xs font-medium text-blue-500 uppercase tracking-wider">
                         Generated XML
                       </span>
                     </div>
@@ -160,7 +160,7 @@ export function HeroSection2() {
                       <p className="text-muted-foreground">
                         &lt;?xml version=&quot;1.0&quot;?&gt;
                       </p>
-                      <p className="text-primary">&lt;LegalDocument&gt;</p>
+                      <p className="text-blue-500">&lt;LegalDocument&gt;</p>
                       <p className="pl-4 text-muted-foreground">
                         &lt;CaseNumber&gt;
                         <span className="text-purple-500">2024/CV/001</span>
@@ -181,7 +181,7 @@ export function HeroSection2() {
                         <span className="text-purple-500">State</span>
                         &lt;/Respondent&gt;
                       </p>
-                      <p className="text-primary">&lt;/LegalDocument&gt;</p>
+                      <p className="text-blue-500">&lt;/LegalDocument&gt;</p>
                     </div>
                   </div>
                 </div>
