@@ -10,39 +10,52 @@
           <FRBRlanguage language="en"/>
           <FRBRauthor href="#Employee"/>
           <FRBRauthor href="#Company"/>
-          <FRBRthis value="/agreement/nda/"/>
+          <FRBRthis value="/agreement/nda"/>
         </FRBRWork>
       </identification>
     </meta>
     <preface>
-      <docTitle>Employee Non-Disclosure Agreement</docTitle>
+      <docTitle>Non-Disclosure Agreement (NDA)</docTitle>
     </preface>
     <body>
       <article eId="art1">
-        <heading>1. Purpose</heading>
-        <paragraph>Both Parties agree that it is in their best interests to protect the Company's Confidential Information, and that the terms of this Agreement create a bond of trust and confidentiality between them. In consideration of Employee's commencement of employment, or continued employment with the Company, the Parties agree as follows:</paragraph>
+        <heading>1. Scope of Agreement</heading>
+        <paragraph>This EMPLOYEE NON-DISCLOSURE AGREEMENT, hereinafter known as the “Agreement”, is entered into between (“Employee”) and (“Company”), collectively known as the “Parties” as of the _ _dayof____ 20__ (the Effective Date’).</paragraph>
+        <paragraph>Article I acknowledges that certain confidential information, trade secrets, and proprietary data (hereinafter defined and referred to as “Confidential Information”) of or regarding the Company may be discussed between Employee and the Company (hereinafter known collectively as the “Parties”).</paragraph>
+        <paragraph>The provisions set forth in this Agreement define the circumstances in which the Employee can and cannot disclose Confidential Information, and include the remedies, penalties and lawful action the Company may take should such information be used or disclosed by Employee.</paragraph>
+        <paragraph>Both Parties agree that it is in their best interests to protect the Company's Confidential Information, and that the terms of this Agreement create a bond of trust and confidentiality between them.</paragraph>
       </article>
       <article eId="art2">
         <heading>2. Confidential Information</heading>
         <section eId="art2a">
-          <heading>A. Definitions</heading>
+          <title>A. Definitions</title>
           <paragraph>Confidential Information is any material, knowledge, information and data (verbal, electronic, written or any other form) concerning the Company or its businesses not generally known to the public consisting of, but not limited to, inventions, discoveries, plans, concepts, designs, blueprints, drawings, models, devices, equipment, apparatus, products, prototypes, formulae, algorithms, techniques, research projects, computer programs, software, firmware, hardware, business, development and marketing plans, merchandising systems, financial and pricing data, information concerning investors, customers, suppliers, consultants and employees, and any other concepts, ideas or information involving or related to the business which, if misused or disclosed, could adversely affect the Company's business.</paragraph>
         </section>
         <section eId="art2b">
-          <heading>B. Exclusions</heading>
+          <title>B. Exclusions</title>
           <paragraph>For the purposes of this Agreement, information shall not be deemed Confidential Information and the Employee shall have no obligation to keep it confidential if:</paragraph>
           <list>
-            <listitem>(i) the information was publicly known;</listitem>
-            <listitem>(ii) the information was received from a third party not subject to the restrictions of this Agreement and becomes available to Employee through no wrongful act or breach of Agreement on their part;</listitem>
-            <listitem>(iii) the information was approved for release by Employer through written authorization.</listitem>
+            <listItem>
+              <paragraph>(i) the information was publicly known;</paragraph>
+            </listItem>
+            <listItem>
+              <paragraph>(ii) the information was received from a third party not subject to the restrictions of this Agreement and becomes available to Employee through no wrongful act or breach of Agreement on their part;</paragraph>
+            </listItem>
+            <listItem>
+              <paragraph>(iif) the information was approved for release by Employer through written authorization.</paragraph>
+            </listItem>
           </list>
         </section>
         <section eId="art2c">
-          <heading>C. Period of Confidentiality</heading>
+          <title>C. Period of Confidentiality</title>
           <paragraph>(Check One)</paragraph>
           <list>
-            <listitem>1. Purpose: The parties agree to protect confidential information...</listitem>
-            <listitem>2. Obligations: The Receiving Party agrees not to disclose any information...</listitem>
+            <listItem>
+              <paragraph>1. Purpose: The parties agree to protect confidential information...</paragraph>
+            </listItem>
+            <listItem>
+              <paragraph>2. Obligations: The Receiving Party agrees not to disclose any information...</paragraph>
+            </listItem>
           </list>
         </section>
       </article>
