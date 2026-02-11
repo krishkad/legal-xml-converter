@@ -1,51 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<akomaNtoso>
-  <agreement>
-    <meta>
-      <identification source="#court">
-        <FRBRWork>
-          <FRBRcountry value="USA"/>
-          <FRBRjurisdiction value="FederalCourt"/>
-          <FRBRdate date=""/>
-          <FRBRlanguage language="en"/>
-          <FRBRauthor href="#JohnDoe"/>
-          <FRBRauthor href="#JaneSmith"/>
-          <FRBRthis value="/agreement/nda/2024-07-15"/>
-        </FRBRWork>
-      </identification>
-    </meta>
-    <preface>
-      <docTitle>Non-Disclosure Agreement (NDA)</docTitle>
-    </preface>
-    <body>
-      <article eId="art1">
-        <heading>1. Purpose</heading>
-        <paragraph>The parties agree to protect confidential information...</paragraph>
-      </article>
-      <article eId="art2">
-        <heading>2. Obligations</heading>
-        <paragraph>The Receiving Party agrees not to disclose any information...</paragraph>
-      </article>
-      <article eId="art3">
-        <heading>3. Confidential Information</heading>
-        <paragraph>The term "Confidential Information" means any information or material which is proprietary to the Owner, whether or not owned or developed by the Owner, which is not generally known other than by the Owner, and which the Recipient may obtain through any direct or indirect contact with the Owner.</paragraph>
-      </article>
-      <article eId="art4">
-        <heading>4. Protection of Confidential Information</heading>
-        <paragraph>The Recipient must protect this information by safeguarding it when in use, using it only for the business of the Company and disclosing it only when authorized to do so and to those who have a legitimate business need to know about it.</paragraph>
-      </article>
-      <article eId="art5">
-        <heading>5. Scope of Confidentiality</heading>
-        <paragraph>This duty of confidentiality applies whether the Recipient is on or off the Company's premises, and during and even after the end of the Recipient’s engagement with the Company.</paragraph>
-      </article>
-      <article eId="art6">
-        <heading>6. Electronic Communications</heading>
-        <paragraph>This duty of confidentiality also applies to communications transmitted by the Company's electronic communications.</paragraph>
-      </article>
-      <article eId="art7">
-        <heading>7. Mutual Consideration</heading>
-        <paragraph>Now Therefore, for the mutual consideration of the terms and conditions set forth below, the receipt and the sufficiency of which are hereby mutually acknowledged, the parties hereby agree as follows to a binding contractual agreement:</paragraph>
-      </article>
-    </body>
-  </agreement>
+<akomaNtoso xmlns="http://docs.oasis-open.org/legalDocumentML/v1.0/legalDocumentML.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://docs.oasis-open.org/legalDocumentML/v1.0/legalDocumentML.xsd">
+  <meta>
+    <identification source="#court">
+      <FRBRWork>
+        <FRBRcountry value="USA"/>
+        <FRBRjurisdiction value="Federal Court"/>
+        <FRBRdate date=""/>
+        <FRBRlanguage language="en"/>
+        <FRBRdocumentType documentType="agreement"/>
+      </FRBRWork>
+    </identification>
+  </meta>
+  <prolog>
+    <title>Non-Disclosure Agreement (NDA)</title>
+    <preamble>
+      <p>WHEREAS, this non-disclosure agreement (the "Agreement") is made effective as of the date signed below (the Date) by [ENTER YOUR COMPANY NAME] (the “Company” or "Owner"), of , and the undersigned (the "Recipient"); and,
+WHEREAS, in the course of dealings with the Company, the Recipient may have access to "Confidential Information" regarding the Company, which may include its business strategy, future plans, financial information, contracts, suppliers, customers, personnel information or other information or trade secrets as identified in {ENTER YOUR STATE} law and the Defend Trade Secrets Act (DTSA), that the Company considers proprietary and confidential. Maintaining the confidentiality of this information is vital to the Company's competitive position in the industry and, ultimately, to its ability to achieve financial success and stability. The Recipient must protect this information by safeguarding it when in use, using it only for the business of the Company and disclosing it only when authorized to do so and to those who have a legitimate business need to know about it. This duty of confidentiality applies whether the Recipient is on or off the Company's premises, and during and even after the end of the Recipient’s engagement with the Company. This duty of confidentiality also applies to communications transmitted by the Company's electronic communications. The Owner has requested, and the Recipient agrees that the Recipient will protect the confidential material and information which may be disclosed between the Owner and the Recipient;</p>
+    </preamble>
+  </prolog>
+  <body>
+    <article eId="art1">
+      <heading>1. Confidential Information</heading>
+      <paragraph>The term "Confidential Information" means any information or material which is proprietary to the Owner, whether or not owned or developed by the Owner, which is not generally known other than by the Owner, and which the Recipient may obtain through any direct or indirect contact with the Owner. Regardless of whether specifically identified as confidential or proprietary, Confidential Information shall include any information provided by the Owner concerning the business, technology and information of the Owner and any third party with which the Owner deals, including, without limitation, business records and plans, trade secrets as defined in [ENTER YOUR STATE] law and the Defend Trade Secrets Act (DTSA), technical data, product</paragraph>
+    </article>
+    <article eId="art2">
+      <heading>2. Obligations</heading>
+      <paragraph>The Receiving Party agrees not to disclose any information...</paragraph>
+    </article>
+  </body>
 </akomaNtoso>

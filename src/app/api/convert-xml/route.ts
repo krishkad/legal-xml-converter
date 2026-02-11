@@ -75,10 +75,7 @@ export async function POST(req: NextRequest) {
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
 
-    const uploadDir =
-      process.env.NODE_ENV === "production"
-        ? "/tmp"
-        : path.join(process.cwd(), "public", "uploads");
+    const uploadDir = path.join(process.cwd(), "public", "uploads");
     const filePath = path.join(uploadDir, file.name);
 
     writeFileSync(filePath, buffer);

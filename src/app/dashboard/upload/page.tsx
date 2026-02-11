@@ -305,7 +305,7 @@ export default function Upload() {
               <div className="relative rounded-xl p-8 bg-muted backdrop-blur-sm border border-border text-center shadow-sm space-y-5">
                 {/* Spinner */}
                 <div className="flex justify-center">
-                  <div className="h-10 w-10 rounded-full border-2 border-muted-foreground/30 border-t-primary animate-spin" />
+                  <div className="h-10 w-10 rounded-full border-2 border-muted-foreground/30 border-t-blue-500 animate-spin" />
                 </div>
 
                 {/* Title */}
@@ -320,7 +320,7 @@ export default function Upload() {
 
                 {/* Minimal progress bar */}
                 <div className="w-full h-1.5 bg-muted rounded-full overflow-hidden">
-                  <div className="h-full bg-primary progress-bar"></div>
+                  <div className="h-full bg-blue-500 progress-bar"></div>
                 </div>
               </div>
             ) : (
