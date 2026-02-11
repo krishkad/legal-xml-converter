@@ -77,8 +77,8 @@ export async function POST(req: NextRequest) {
 
     const uploadDir =
       process.env.NODE_ENV === "production"
-        ? path.join(process.cwd(), "public", "uploads")
-        : "/tmp";
+        ? "/tmp"
+        : path.join(process.cwd(), "public", "uploads");
     const filePath = path.join(uploadDir, file.name);
 
     writeFileSync(filePath, buffer);
