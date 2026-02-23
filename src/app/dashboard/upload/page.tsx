@@ -47,6 +47,7 @@ export default function Upload() {
   const dispatch = useDispatch();
 
   const activePlan = getActiveSubscription(subscriptions);
+  
   const handleDragOver = useCallback((e: React.DragEvent) => {
     e.preventDefault();
     setIsDragOver(true);

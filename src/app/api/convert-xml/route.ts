@@ -72,16 +72,24 @@ export async function POST(req: NextRequest) {
       }
       return new Response("subscription expired", { status: 400 });
     }
+    console.log("step 1");
     const bytes = await file.arrayBuffer();
+    console.log("step 2");
     const buffer = Buffer.from(bytes);
+    console.log("step 3");
 
     const uploadDir = path.join(process.cwd(), "public", "uploads");
+    console.log("step 4");
     const filePath = path.join(uploadDir, file.name);
+    console.log("step 5");
 
     writeFileSync(filePath, buffer);
+    console.log("step 6");
 
     const inputFile = path.join(uploadDir, file.name); // Replace with your file
+    console.log("step 7");
     const text = await convertAffidavitToXML(inputFile, file);
+    console.log("step 8");
 
     console.log([text]);
 
