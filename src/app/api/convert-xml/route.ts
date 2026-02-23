@@ -78,15 +78,15 @@ export async function POST(req: NextRequest) {
     const buffer = Buffer.from(bytes);
     console.log("step 3");
 
-    const uploadDir = path.join(process.cwd(), "public", "uploads");
+    // const uploadDir = path.join(process.cwd(), "public", "uploads");
     console.log("step 4");
-    const filePath = path.join(uploadDir, file.name);
+    const filePath = `/tmp/${file.name}`;
     console.log("step 5");
 
     writeFileSync(filePath, buffer);
     console.log("step 6");
 
-    const inputFile = path.join(uploadDir, file.name); // Replace with your file
+    const inputFile = path.join(filePath, file.name); // Replace with your file
     console.log("step 7");
     const text = await convertAffidavitToXML(inputFile, file);
     console.log("step 8");
@@ -191,7 +191,7 @@ Edit
       .replace(/```$/, "");
     console.log({ xml: finalXml });
 
-    const outputFile = path.join(uploadDir, `${file.name.split(".")[0]}.xml`);
+    const outputFile = path.join(filePath, `${file.name.split(".")[0]}.xml`);
     await promises.writeFile(outputFile, finalXml ?? "");
 
     const doc = await prisma.document.create({
