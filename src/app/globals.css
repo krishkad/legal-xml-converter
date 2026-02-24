@@ -186,6 +186,33 @@
   .animate-scale-in {
     animation: scaleIn 0.5s ease-out;
   }
+
+  .glass {
+    @apply bg-card/50 backdrop-blur-xl border border-border/50;
+  }
+
+  .glass-strong {
+    @apply bg-card/70 backdrop-blur-2xl border border-border/60;
+  }
+
+  .glow-blue {
+    box-shadow:
+      0 0 30px hsl(217 91% 60% / 0.3),
+      0 0 60px hsl(217 91% 60% / 0.1);
+  }
+
+  .glow-blue-sm {
+    box-shadow: 0 0 15px hsl(217 91% 60% / 0.25);
+  }
+
+  .card-hover {
+    @apply transition-all duration-300;
+  }
+
+  .card-hover:hover {
+    box-shadow: 0 0 30px hsl(217 91% 60% / 0.15);
+    border-color: hsl(217 91% 60% / 0.3);
+  }
 }
 
 @keyframes float {
