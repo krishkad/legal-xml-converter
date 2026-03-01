@@ -91,6 +91,7 @@ async function extractText(filePath: string, file: File): Promise<string> {
         "../../node_modules/tesseract.js/src/worker-script/node/index.js",
       ),
     );
+    console.log(__dirname);
     const worker = await createWorker("eng", 1, {
       workerPath: path.join(
         __dirname,
