@@ -1,4 +1,5 @@
 "use server";
+export const runtime = "nodejs";
 
 import { promises } from "fs";
 import mammoth from "mammoth";
@@ -6,7 +7,7 @@ import * as natural from "natural";
 import path from "path";
 import PDFParser from "pdf2json";
 import { createWorker } from "tesseract.js";
-// import { fileURLToPath } from "url";
+import { fileURLToPath } from "url";
 
 // Define interfaces for affidavit structure
 interface Affiant {
@@ -30,8 +31,8 @@ interface Metadata {
   jurisdiction: string;
 }
 
-// const __filename = fileURLToPath(import.meta.url);
-// const __dirname = path.dirname(__filename);
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Initialize NLP tools
 // Provide an empty abbreviations list to SentenceTokenizer to satisfy type requirements
@@ -92,20 +93,20 @@ async function extractText(filePath: string, file: File): Promise<string> {
       ),
     );
     console.log(__dirname);
-    // const worker = await createWorker("eng", 1, {
-    //   workerPath: path.join(
-    //     __dirname,
-    //     "../../node_modules/tesseract.js/src/worker-script/node/index.js",
-    //   ),
-    //   corePath: path.join(
-    //     __dirname,
-    //     "../../node_modules/tesseract.js/src/index.js",
-    //   ),
-    //   langPath: path.join(__dirname, "../../tessdata"), // Local path to language data
-    // });
 
-    const worker = await createWorker("eng");
+    const worker = await createWorker("eng", 1, {
+      workerPath: path.join(
+        __dirname,
+        "../../node_modules/tesseract.js/src/worker-script/node/index.js",
+      ),
+      corePath: path.join(
+        __dirname,
+        "../../node_modules/tesseract.js/src/index.js",
+      ),
+      langPath: path.join(__dirname, "../../tessdata"), // Local path to language data
+    });
 
+    
     const {
       data: { text },
     } = await worker.recognize(buffer);
