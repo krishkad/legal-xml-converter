@@ -64,15 +64,20 @@ async function extractText(filePath: string, file: File): Promise<string> {
   } else if (ext === "png" || ext === "jpeg" || ext === "jpg") {
     const arrayBuffer = await file.arrayBuffer();
     const buffer = Buffer.from(arrayBuffer);
-    console.log("./tesseract.js/src/worker-script/node/index.js");
+    console.log(
+      "../../node_modules/tesseract.js/src/worker-script/node/index.js",
+    );
     console.log(__dirname);
 
     const worker = await createWorker("eng", 1, {
       workerPath: path.join(
         __dirname,
-        "./tesseract.js/src/worker-script/node/index.js",
+        "../../node_modules/tesseract.js/src/worker-script/node/index.js",
       ),
-      corePath: path.join(__dirname, "./tesseract.js/src/index.js"),
+      corePath: path.join(
+        __dirname,
+        "../../node_modules/tesseract.js/src/index.js",
+      ),
       langPath: path.join(__dirname, "../../tessdata"), // Local path to language data
     });
 
@@ -102,7 +107,6 @@ export async function convertAffidavitToXML(
   try {
     // Step 1: Extract text from the input file
     const text = await extractText(inputFile, file);
-    console.log("Text extracted successfully.", { text });
     return text;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error) {
