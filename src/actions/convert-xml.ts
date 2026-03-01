@@ -1,4 +1,4 @@
-"use server";
+// "use server";
 export const runtime = "nodejs";
 
 import { promises } from "fs";
@@ -8,28 +8,6 @@ import path from "path";
 import PDFParser from "pdf2json";
 import { createWorker } from "tesseract.js";
 import { fileURLToPath } from "url";
-
-// Define interfaces for affidavit structure
-interface Affiant {
-  name: string;
-  address: string;
-}
-
-interface Statement {
-  text: string;
-}
-
-interface Notary {
-  name: string;
-  date: string;
-  commission: string;
-}
-
-interface Metadata {
-  title: string;
-  date: string;
-  jurisdiction: string;
-}
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -106,7 +84,6 @@ async function extractText(filePath: string, file: File): Promise<string> {
       langPath: path.join(__dirname, "../../tessdata"), // Local path to language data
     });
 
-    
     const {
       data: { text },
     } = await worker.recognize(buffer);
