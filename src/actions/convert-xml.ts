@@ -64,23 +64,15 @@ async function extractText(filePath: string, file: File): Promise<string> {
   } else if (ext === "png" || ext === "jpeg" || ext === "jpg") {
     const arrayBuffer = await file.arrayBuffer();
     const buffer = Buffer.from(arrayBuffer);
-    console.log(
-      path.join(
-        __dirname,
-        "../../node_modules/tesseract.js/src/worker-script/node/index.js",
-      ),
-    );
+    console.log("./tesseract.js/src/worker-script/node/index.js");
     console.log(__dirname);
 
     const worker = await createWorker("eng", 1, {
       workerPath: path.join(
         __dirname,
-        "../../node_modules/tesseract.js/src/worker-script/node/index.js",
+        "./tesseract.js/src/worker-script/node/index.js",
       ),
-      corePath: path.join(
-        __dirname,
-        "../../node_modules/tesseract.js/src/index.js",
-      ),
+      corePath: path.join(__dirname, "./tesseract.js/src/index.js"),
       langPath: path.join(__dirname, "../../tessdata"), // Local path to language data
     });
 
