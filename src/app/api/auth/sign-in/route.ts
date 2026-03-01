@@ -49,7 +49,8 @@ export async function POST(req: NextRequest) {
     });
 
     response.cookies.set(`${process.env.COOKIE_NAME as string}`, token, {
-      httpOnly: process.env.NODE_ENV === "production",
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
     });
 
     return response;

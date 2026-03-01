@@ -10,6 +10,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
+import { extractTextClientSide } from "@/lib/tesseract";
 import { calculatePercentage, getActiveSubscription } from "@/lib/utils";
 import { add_document } from "@/redux/slices/documents";
 import { initialSubscription } from "@/redux/slices/subscriptions";
@@ -40,14 +41,14 @@ export default function Upload() {
   const [isDragOver, setIsDragOver] = useState(false);
   const [isConverting, setIsConverting] = useState(false);
   const { subscriptions } = useSelector(
-    (state: RootState) => state.subscriptions
+    (state: RootState) => state.subscriptions,
   );
 
   const { documents } = useSelector((state: RootState) => state.documents);
   const dispatch = useDispatch();
 
   const activePlan = getActiveSubscription(subscriptions);
-  
+
   const handleDragOver = useCallback((e: React.DragEvent) => {
     e.preventDefault();
     setIsDragOver(true);
@@ -67,6 +68,7 @@ export default function Upload() {
       const files = Array.from(e.dataTransfer.files);
       const file = files[0];
 
+      await extractTextClientSide(file);
       try {
         if (file) {
           const formData = new FormData();
@@ -89,7 +91,7 @@ export default function Upload() {
                         ? "EXPIRED"
                         : sub.status,
                   }
-                : sub
+                : sub,
             );
 
             console.log({ updated_subscription });
@@ -124,7 +126,7 @@ export default function Upload() {
                   ...sub,
                   conversions_done: sub.conversions_done + 1,
                 }
-              : sub
+              : sub,
           );
 
           console.log({ updated_subscription, activePlan });
@@ -138,7 +140,7 @@ export default function Upload() {
         setIsConverting(false);
       }
     },
-    [documents, dispatch]
+    [documents, dispatch],
   );
 
   const handleFileSelect = useCallback(
@@ -147,6 +149,7 @@ export default function Upload() {
       setIsConverting(true);
       try {
         if (file) {
+          await extractTextClientSide(file);
           const formData = new FormData();
           formData.append("file", file);
 
@@ -181,7 +184,7 @@ export default function Upload() {
                   ...sub,
                   conversions_done: sub.conversions_done + 1,
                 }
-              : { ...sub }
+              : { ...sub },
           );
 
           dispatch(initialSubscription(updated_subscription));
@@ -193,7 +196,7 @@ export default function Upload() {
         setIsConverting(false);
       }
     },
-    []
+    [],
   );
 
   const addFiles = (newFiles: File[]) => {
@@ -224,8 +227,8 @@ export default function Upload() {
   const startConversion = (id: string) => {
     setFiles((prev) =>
       prev.map((file) =>
-        file.id === id ? { ...file, status: "uploading", progress: 0 } : file
-      )
+        file.id === id ? { ...file, status: "uploading", progress: 0 } : file,
+      ),
     );
 
     // Simulate upload progress
@@ -241,7 +244,7 @@ export default function Upload() {
             return { ...file, progress: newProgress };
           }
           return file;
-        })
+        }),
       );
     }, 200);
   };
@@ -478,7 +481,7 @@ export default function Upload() {
                 <Progress
                   value={calculatePercentage(
                     activePlan?.conversions_done ?? 0,
-                    activePlan?.maxConversions ?? 0
+                    activePlan?.maxConversions ?? 0,
                   )}
                   className="mb-2"
                 />
