@@ -150,14 +150,13 @@ Edit
       temperature: 0.7,
     });
 
-    console.log({ response, choices: response.choices });
-
     if (
       !response ||
       !response.id ||
       !response.choices ||
       !response.choices[0].message?.content
     ) {
+      console.log({ response });
       return new Response("failed to convert document.", { status: 400 });
     }
 

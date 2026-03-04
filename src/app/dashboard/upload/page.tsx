@@ -172,6 +172,7 @@ export default function Upload() {
           const blob = await response.blob();
           const docHeader = response.headers.get("X-Doc");
           const doc = docHeader ? JSON.parse(docHeader) : undefined;
+          console.log({ doc, docHeader, documents });
 
           // Create download link
           const url = window.URL.createObjectURL(blob);
@@ -194,7 +195,9 @@ export default function Upload() {
           );
 
           dispatch(initialSubscription(updated_subscription));
-          dispatch(add_document(doc));
+          if (doc) {
+            dispatch(add_document(doc));
+          }
         }
       } catch (error) {
         console.log("failed to convert: ", error);
