@@ -10,4 +10,5 @@ import Tesseract from "tesseract.js";
       }
     )
     console.log({text: data.text});
+    return data.text ?? ""
   }

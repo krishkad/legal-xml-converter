@@ -1,11 +1,7 @@
-import { convertAffidavitToXML } from "@/actions/convert-xml";
 import prisma from "@/lib/prisma";
-import fs, { promises, writeFileSync } from "fs";
 import jwt, { JwtPayload } from "jsonwebtoken";
 import { NextRequest } from "next/server";
 import OpenAI from "openai";
-import path from "path";
-import { fileURLToPath } from "url";
 
 export interface CustomJWTPayload extends JwtPayload {
   id: string;
@@ -17,20 +13,15 @@ const openai = new OpenAI({
   baseURL: "https://openrouter.ai/api/v1",
 });
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
 export async function POST(req: NextRequest) {
   try {
     const token = req.cookies.get(
       `${process.env.COOKIE_NAME as string}`,
     )?.value;
     const formData = await req.formData();
-    const file = formData.get("file") as File;
-
-    if (!file) {
-      return new Response("No file uploaded", { status: 400 });
-    }
+    const text = formData.get("text");
+    const fileName = formData.get("fileName");
+    const fileSize = formData.get("fileSize");
 
     if (!token) {
       return new Response("to token found", { status: 400 });
@@ -72,19 +63,6 @@ export async function POST(req: NextRequest) {
       }
       return new Response("subscription expired", { status: 400 });
     }
-    const bytes = await file.arrayBuffer();
-    const buffer = Buffer.from(bytes);
-
-    // const uploadDir = path.join(process.cwd(), "public", "uploads");
-    const uploadDir = "/tmp";
-    const filePath = path.join(uploadDir, file.name);
-
-    console.log({ uploadDir, filePath });
-    writeFileSync(filePath, buffer);
-
-    const inputFile = path.join(uploadDir, file.name); // Replace with your file
-    console.log({ inputFile });
-    const text = await convertAffidavitToXML(inputFile, file);
 
     console.log([text]);
 
@@ -188,14 +166,11 @@ Edit
       .replace(/```$/, "");
     console.log({ xml: finalXml });
 
-    const outputFile = path.join(uploadDir, `${file.name.split(".")[0]}.xml`);
-    await promises.writeFile(outputFile, finalXml ?? "");
-
     const doc = await prisma.document.create({
       data: {
         userId: token_data.id,
-        name: file.name,
-        size: file.size.toString(),
+        name: fileName?.toString() ?? "Document",
+        size: fileSize?.toString() ?? "",
         status: "success",
       },
     });
@@ -209,7 +184,7 @@ Edit
       data: { conversions_done: subs.conversions_done + 1 },
     });
 
-    let xmlString = fs.readFileSync(outputFile, "utf8");
+    let xmlString = finalXml;
 
     xmlString = xmlString.replace(/\u202F/g, " ");
 
@@ -222,7 +197,7 @@ Edit
       headers: {
         "Content-Type": "application/xml",
         "Content-Disposition": `attachment; filename="${
-          file.name.split(".")[0]
+          (fileName?.toString() ?? "Document").split(".")[0]
         }.xml`,
         "X-Doc": JSON.stringify(doc),
       },

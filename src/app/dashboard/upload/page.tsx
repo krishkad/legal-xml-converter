@@ -10,6 +10,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
+import { extract_text } from "@/lib/extract-text";
 import { extractTextClientSide } from "@/lib/tesseract";
 import { calculatePercentage, getActiveSubscription } from "@/lib/utils";
 import { add_document } from "@/redux/slices/documents";
@@ -71,10 +72,13 @@ export default function Upload() {
       await extractTextClientSide(file);
       try {
         if (file) {
+          const text = await extract_text(file);
           const formData = new FormData();
-          formData.append("file", file);
+          formData.append("fileName", file.name);
+          formData.append("fileSize", file.size.toString());
+          formData.append("text", text);
 
-          const response = await fetch("/api/convert-xml", {
+          const response = await fetch("/api/convert-to-xml", {
             method: "POST",
             body: formData,
           });
@@ -149,11 +153,13 @@ export default function Upload() {
       setIsConverting(true);
       try {
         if (file) {
-          await extractTextClientSide(file);
+          const text = await extract_text(file);
           const formData = new FormData();
-          formData.append("file", file);
+          formData.append("fileName", file.name);
+          formData.append("fileSize", file.size.toString());
+          formData.append("text", text);
 
-          const response = await fetch("/api/convert-xml", {
+          const response = await fetch("/api/convert-to-xml", {
             method: "POST",
             body: formData,
           });
