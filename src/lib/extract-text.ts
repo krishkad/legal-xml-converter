@@ -1,5 +1,5 @@
 import mammoth from "mammoth";
-import PDFParser from "pdf2json";
+import * as pdfjsLib from "pdfjs-dist";
 import { extractTextClientSide } from "./tesseract";
 
 // Function to extract text from input file
@@ -8,44 +8,19 @@ async function extractText(file: File): Promise<string> {
   console.log({ ext });
   if (ext === "pdf") {
     return new Promise(async (resolve, reject) => {
-      const arrayBuffer = await file.arrayBuffer();
-      const pdfParser = new PDFParser();
-      pdfParser.parseBuffer(Buffer.from(arrayBuffer));
+      const pdf = await pdfjsLib.getDocument({
+        data: await file.arrayBuffer(),
+      }).promise;
 
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      pdfParser.on("pdfParser_dataReady", async (pdfData: any) => {
-        let extractedText = "";
-        let hasAnyText = false;
+      let text = "";
 
-        for (const page of pdfData.Pages) {
-          let pageText = "";
+      for (let i = 1; i <= pdf.numPages; i++) {
+        const page = await pdf.getPage(i);
+        const content = await page.getTextContent();
+        text += content.items.map((item: any) => item.str).join(" ");
+      }
 
-          if (page.Texts && page.Texts.length > 0) {
-            for (const textRun of page.Texts) {
-              for (const r of textRun.R) {
-                pageText += decodeURIComponent(r.T) + " ";
-              }
-            }
-          }
-
-          if (pageText.trim().length > 0) {
-            hasAnyText = true;
-            extractedText += pageText;
-          }
-        }
-
-        // 🔍 PDF TYPE CHECK
-        if (!hasAnyText) {
-          console.log("📄 Detected IMAGE-BASED PDF (scanned)");
-          resolve("");
-        } else {
-          console.log("📄 Detected TEXT-BASED PDF");
-          resolve(extractedText.trim());
-        }
-      });
-
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      pdfParser.on("error" as any, (err: Error) => reject(err));
+      resolve(text);
     });
   } else if (ext === "png" || ext === "jpeg" || ext === "jpg") {
     const text = await extractTextClientSide(file);
