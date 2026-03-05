@@ -12,6 +12,7 @@ const plans = [
     name: "Free",
     monthly: 0,
     yearly: 24,
+    priceId: "price_1STeqD3Vu7PCR4WVGRzUrFN5test",
     features: [
       "5 document conversions",
       "Basic XML structure",
@@ -25,6 +26,7 @@ const plans = [
     name: "Pro",
     monthly: 29,
     yearly: 66,
+    priceId: "price_1STeqD3Vu7PCR4WVGRzUrFN5",
     features: [
       "100 conversions",
       "Advanced XML formatting",
@@ -40,6 +42,7 @@ const plans = [
     name: "Enterprise",
     monthly: 199,
     yearly: 166,
+    priceId: "price_1STeqD3Vu7PCR4WVGRzUrFN5test",
     features: [
       "Volume pricing",
       "Dedicated support",
@@ -127,6 +130,10 @@ const PricingSection = () => {
                       ? "bg-gradient-to-br from-primary to-blue-600 text-white btn-glow hover:brightness-110"
                       : "glass border border-border hover:border-primary/30"
                   }`}
+                  onClick={() => {
+                    if (plan.name !== "Pro") return;
+                    handleSubscribe(plan.priceId);
+                  }}
                 >
                   Get Started
                 </button>

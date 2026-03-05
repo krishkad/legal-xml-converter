@@ -214,7 +214,7 @@ export default function SignUpPage() {
                 </div>
               </div>
 
-              <div className="flex justify-between mt-6">
+              <div className="flex justify-between mt-2">
                 <Button variant="outline" onClick={() => setStep(1)}>
                   <ArrowLeft className="mr-2 w-4 h-4" /> Back
                 </Button>
@@ -238,12 +238,12 @@ export default function SignUpPage() {
           </div>
         </div>
 
-        <CardFooter className="text-center pb-6">
+        <CardFooter className="text-center">
           <p className="text-xs text-muted-foreground w-full">
             Already have an account?{" "}
             <a
               href="/sign-in"
-              className="text-primary font-medium hover:underline"
+              className="text-blue-400 font-medium hover:underline"
             >
               Sign in
             </a>

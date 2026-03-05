@@ -6,29 +6,25 @@ const PrivacySection = () => {
       icon: Database,
       title: "Files Never Stored",
       description:
-        "Your documents are processed in real-time and immediately discarded. Zero data retention.",
-      highlight: "In-Memory Only",
+        "Documents are processed in real-time and immediately discarded.",
     },
     {
       icon: Shield,
       title: "End-to-End Encryption",
       description:
-        "All data transmission is encrypted using industry-standard TLS protocols.",
-      highlight: "Bank-Level Security",
+        "All transmissions are secured with industry standard TLS encryption.",
     },
     {
       icon: Eye,
       title: "No Tracking",
       description:
-        "We don't track, store, or analyze your usage patterns or document content.",
-      highlight: "Complete Privacy",
+        "We never track or analyze document contents or usage patterns.",
     },
     {
       icon: Lock,
       title: "GDPR Compliant",
       description:
-        "Fully compliant with European data protection regulations and privacy laws.",
-      highlight: "Legal Compliance",
+        "Built to comply with strict global data protection regulations.",
     },
   ];
 
@@ -40,137 +36,139 @@ const PrivacySection = () => {
   ];
 
   return (
-    <section id="privacy" className="py-20 gradient-hero-glass">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12 sm:mb-16 animate-fade-in-up px-4">
-          <div className="inline-flex items-center gap-2 bg-primary/10 px-3 sm:px-4 py-2 rounded-full mb-4 sm:mb-6">
-            <Shield className="w-4 sm:w-5 h-4 sm:h-5 text-primary" />
-            <span className="text-foreground font-medium text-sm sm:text-base">
-              Privacy First
+    <section id="privacy" className="py-24 gradient-hero-glass">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+
+        {/* Top Header */}
+        <div className="text-center mb-20">
+
+          <div className="inline-flex items-center gap-2 bg-primary/10 px-4 py-2 rounded-full mb-6">
+            <Shield className="w-4 h-4 text-primary" />
+            <span className="text-sm font-semibold text-foreground">
+              Privacy & Security
             </span>
           </div>
 
-          <h2 className="text-3xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 sm:mb-6">
+          <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-6">
             Built with{" "}
-            <span className="bg-gradient-to-br from-primary to-blue-600 bg-clip-text text-transparent">
-              Privacy First
+            <span className="bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">
+              Zero-Knowledge Privacy
             </span>
           </h2>
-          <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto">
-            Your documents and data are sacred. We&apos;ve designed lawparser
-            with zero-knowledge architecture to ensure complete privacy and
-            security.
+
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            Lawparser is designed so your documents never leave your control.
+            Every file is processed securely and instantly deleted.
           </p>
         </div>
 
-        {/* Privacy Features Grid */}
-        <div className="grid sm:grid-cols-2 gap-6 sm:gap-8 mb-12 sm:mb-16 px-4 sm:px-0">
-          {features.map((feature, index) => (
-            <div
-              key={index}
-              className="bg-background p-6 sm:p-8 rounded-2xl shadow-card hover:shadow-glow transition-smooth animate-fade-in-up border"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              <div className="flex items-start gap-3 sm:gap-4">
-                <div className="flex-shrink-0">
-                  <div className="w-12 sm:w-14 h-12 sm:h-14 bg-primary/10 rounded-xl flex items-center justify-center">
-                    <feature.icon className="w-6 sm:w-7 h-6 sm:h-7 text-primary" />
-                  </div>
+        {/* Main Layout */}
+        <div className="grid lg:grid-cols-2 gap-16 items-start">
+
+          {/* LEFT SIDE — Privacy Features */}
+          <div className="space-y-8">
+
+            {features.map((feature, index) => (
+              <div key={index} className="flex gap-5 group">
+
+                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition">
+                  <feature.icon className="w-6 h-6 text-primary" />
                 </div>
-                <div className="flex-1 min-w-0">
-                  <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 mb-1">
-                    <h3 className="text-lg sm:text-xl font-bold text-foreground">
-                      {feature.title}
-                    </h3>
-                    <span className="bg-primary/10 text-primary text-xs font-medium px-2 py-1 rounded-full self-start">
-                      {feature.highlight}
-                    </span>
-                  </div>
-                  <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
+
+                <div>
+                  <h3 className="text-lg font-semibold text-foreground mb-1">
+                    {feature.title}
+                  </h3>
+
+                  <p className="text-muted-foreground text-sm leading-relaxed">
                     {feature.description}
                   </p>
                 </div>
-              </div>
-            </div>
-          ))}
-        </div>
 
-        {/* Security Process */}
-        <div
-          className="bg-background/80 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-border/50 animate-fade-in-up mx-4 sm:mx-0"
-          style={{ animationDelay: "0.4s" }}
-        >
-          <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-6 text-center">
-            How We Protect Your Data
-          </h3>
-
-          <div className="grid sm:grid-cols-3 gap-6 sm:gap-8">
-            <div className="text-center">
-              <div className="w-14 sm:w-16 h-14 sm:h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-xl sm:text-2xl font-bold text-primary">
-                  1
-                </span>
-              </div>
-              <h4 className="font-semibold text-foreground mb-2 text-sm sm:text-base">
-                Encrypted Upload
-              </h4>
-              <p className="text-muted-foreground text-xs sm:text-sm">
-                Your file is encrypted during transmission using TLS 1.3
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="w-14 sm:w-16 h-14 sm:h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-xl sm:text-2xl font-bold text-primary">
-                  2
-                </span>
-              </div>
-              <h4 className="font-semibold text-foreground mb-2 text-sm sm:text-base">
-                In-Memory Processing
-              </h4>
-              <p className="text-muted-foreground text-xs sm:text-sm">
-                Conversion happens in memory, never touching permanent storage
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="w-14 sm:w-16 h-14 sm:h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-xl sm:text-2xl font-bold text-primary">
-                  3
-                </span>
-              </div>
-              <h4 className="font-semibold text-foreground mb-2 text-sm sm:text-base">
-                Immediate Deletion
-              </h4>
-              <p className="text-muted-foreground text-xs sm:text-sm">
-                All data is purged from memory after conversion
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Certifications */}
-        <div
-          className="text-center mt-12 sm:mt-16 animate-fade-in-up px-4 sm:px-0"
-          style={{ animationDelay: "0.6s" }}
-        >
-          <p className="text-muted-foreground mb-4 sm:mb-6">
-            Certified and Compliant
-          </p>
-          <div className="flex flex-wrap justify-center gap-3 sm:gap-6">
-            {certifications.map((cert, index) => (
-              <div
-                key={index}
-                className="flex items-center gap-2 bg-background/60 px-3 sm:px-4 py-2 rounded-full border border-border/50"
-              >
-                <Check className="w-3 sm:w-4 h-3 sm:h-4 text-primary" />
-                <span className="text-xs sm:text-sm font-medium text-foreground">
-                  {cert}
-                </span>
               </div>
             ))}
+
           </div>
+
+          {/* RIGHT SIDE — Security Panel */}
+          <div className="bg-background/80 backdrop-blur-sm border border-border rounded-2xl p-10 shadow-card">
+
+            <h3 className="text-xl font-semibold text-foreground mb-8">
+              Secure Processing Flow
+            </h3>
+
+            <div className="space-y-6">
+
+              {[
+                {
+                  step: "01",
+                  title: "Encrypted Upload",
+                  text: "Files are securely transmitted using TLS encryption.",
+                },
+                {
+                  step: "02",
+                  title: "Memory Processing",
+                  text: "Documents are processed directly in memory.",
+                },
+                {
+                  step: "03",
+                  title: "Instant Deletion",
+                  text: "All file data is permanently removed after processing.",
+                },
+              ].map((item, i) => (
+                <div key={i} className="flex gap-4 items-start">
+
+                  <div className="text-primary font-bold text-sm bg-primary/10 px-3 py-1 rounded-full">
+                    {item.step}
+                  </div>
+
+                  <div>
+                    <h4 className="font-semibold text-foreground text-sm mb-1">
+                      {item.title}
+                    </h4>
+
+                    <p className="text-muted-foreground text-sm">
+                      {item.text}
+                    </p>
+                  </div>
+
+                </div>
+              ))}
+
+            </div>
+
+            {/* Divider */}
+            <div className="border-t border-border my-8" />
+
+            {/* Certifications */}
+            <div>
+
+              <p className="text-sm text-muted-foreground mb-4">
+                Security Certifications
+              </p>
+
+              <div className="flex flex-wrap gap-3">
+
+                {certifications.map((cert, index) => (
+                  <div
+                    key={index}
+                    className="flex items-center gap-2 bg-primary/5 border border-border px-3 py-1.5 rounded-full"
+                  >
+                    <Check className="w-3.5 h-3.5 text-primary" />
+                    <span className="text-xs font-medium text-foreground">
+                      {cert}
+                    </span>
+                  </div>
+                ))}
+
+              </div>
+
+            </div>
+
+          </div>
+
         </div>
+
       </div>
     </section>
   );

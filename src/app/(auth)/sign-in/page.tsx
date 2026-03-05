@@ -107,7 +107,7 @@ export default function SignInPage() {
           <div className="text-right">
             <a
               href="/forgot-password"
-              className="text-xs text-primary hover:underline"
+              className="text-xs text-blue-400 hover:underline"
             >
               Forgot password?
             </a>
@@ -152,7 +152,7 @@ export default function SignInPage() {
 
           <p className="text-xs text-muted-foreground text-center pt-2">
             Don’t have an account?{" "}
-            <a href="/sign-up" className="text-primary hover:underline">
+            <a href="/sign-up" className="text-blue-400 hover:underline">
               Create one
             </a>
           </p>
