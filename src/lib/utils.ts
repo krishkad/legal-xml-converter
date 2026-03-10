@@ -2,7 +2,6 @@ import { Subscription } from "@/generated/prisma/client";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
-
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
@@ -41,7 +40,6 @@ export const getActiveSubscription = (
         new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
     );
 
-  console.log({ latest_expired_sub });
   return activeSubs[0] ? activeSubs[0] : latest_expired_sub[0];
 };
 
@@ -57,7 +55,3 @@ export function displayAmount(amountInPaisa: number) {
   // Return the amount as a float
   return parseFloat(amountInINR).toFixed(2);
 }
-
-
-
-

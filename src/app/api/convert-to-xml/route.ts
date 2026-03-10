@@ -14,6 +14,7 @@ const openai = new OpenAI({
 });
 
 export async function POST(req: NextRequest) {
+  console.time("route execution")
   try {
     const token = req.cookies.get(
       `${process.env.COOKIE_NAME as string}`,
@@ -190,7 +191,7 @@ Edit
     xmlString = xmlString.replace(/[^\x00-\xFF]/g, "");
 
     const safeBuffer = Buffer.from(xmlString, "utf8");
-
+    console.timeEnd("route execution")
     return new Response(safeBuffer, {
       status: 200,
       headers: {
