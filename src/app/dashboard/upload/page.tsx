@@ -145,6 +145,7 @@ export default function Upload() {
     async (e: React.ChangeEvent<HTMLInputElement>) => {
       const file = e.target.files?.[0];
       setIsConverting(true);
+      console.time("execution time")
       try {
         if (file) {
           const text = await extract_text(file);
@@ -196,6 +197,7 @@ export default function Upload() {
         console.log("failed to convert: ", error);
       } finally {
         setIsConverting(false);
+         console.timeEnd("execution time")
       }
     },
     [],
