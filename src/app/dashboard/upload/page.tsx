@@ -28,6 +28,7 @@ import {
 } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Document as IDocument } from "@/generated/prisma/client";
 
 interface UploadFile {
   id: string;
@@ -69,7 +70,6 @@ export default function Upload() {
       const files = Array.from(e.dataTransfer.files);
       const file = files[0];
 
-      await extractTextClientSide(file);
       try {
         if (file) {
           const text = await extract_text(file);
@@ -98,8 +98,6 @@ export default function Upload() {
                 : sub,
             );
 
-            console.log({ updated_subscription });
-
             dispatch(initialSubscription(updated_subscription));
             console.log(response);
             return;
@@ -108,8 +106,6 @@ export default function Upload() {
           const blob = await response.blob();
           const docHeader = response.headers.get("X-Doc");
           const doc = docHeader ? JSON.parse(docHeader) : undefined;
-
-          console.log({ doc });
 
           // Create download link
           const url = window.URL.createObjectURL(blob);
@@ -132,8 +128,6 @@ export default function Upload() {
                 }
               : sub,
           );
-
-          console.log({ updated_subscription, activePlan });
 
           dispatch(initialSubscription(updated_subscription));
           dispatch(add_document(doc));
@@ -172,7 +166,6 @@ export default function Upload() {
           const blob = await response.blob();
           const docHeader = response.headers.get("X-Doc");
           const doc = docHeader ? JSON.parse(docHeader) : undefined;
-          console.log({ doc, docHeader, documents, createdAt: doc.createdAt });
 
           // Create download link
           const url = window.URL.createObjectURL(blob);
@@ -186,7 +179,7 @@ export default function Upload() {
           // Cleanup
           window.URL.revokeObjectURL(url);
           const updated_subscription = subscriptions.map((sub) =>
-            sub.status === "ACTIVE"
+            sub.id === activePlan?.id
               ? {
                   ...sub,
                   conversions_done: sub.conversions_done + 1,
@@ -498,7 +491,7 @@ export default function Upload() {
                     activePlan?.conversions_done ?? 0,
                     activePlan?.maxConversions ?? 0,
                   )}
-                  className="mb-2"
+                  className="mb-2 bg-blue-500"
                 />
                 <p className="text-xs text-muted-foreground">
                   {activePlan?.conversions_done ?? 0} of{" "}
