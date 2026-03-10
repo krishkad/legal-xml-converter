@@ -493,7 +493,7 @@ export default function Upload() {
                     activePlan?.conversions_done ?? 0,
                     activePlan?.maxConversions ?? 0,
                   )}
-                  className="mb-2 bg-blue-500"
+                  className="mb-2"
                 />
                 <p className="text-xs text-muted-foreground">
                   {activePlan?.conversions_done ?? 0} of{" "}
