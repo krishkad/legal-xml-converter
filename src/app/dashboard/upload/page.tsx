@@ -26,7 +26,7 @@ import {
   X,
   XCircle,
 } from "lucide-react";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 interface UploadFile {
@@ -172,7 +172,7 @@ export default function Upload() {
           const blob = await response.blob();
           const docHeader = response.headers.get("X-Doc");
           const doc = docHeader ? JSON.parse(docHeader) : undefined;
-          console.log({ doc, docHeader, documents });
+          console.log({ doc, docHeader, documents, createdAt: doc.createdAt });
 
           // Create download link
           const url = window.URL.createObjectURL(blob);
@@ -294,6 +294,12 @@ export default function Upload() {
     const i = Math.floor(Math.log(bytes) / Math.log(k));
     return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + " " + sizes[i];
   };
+
+  useEffect(() => {
+    if (!documents) return;
+
+    console.log({ documents });
+  }, []);
 
   return (
     <>

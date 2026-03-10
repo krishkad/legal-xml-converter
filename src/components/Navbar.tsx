@@ -88,7 +88,7 @@ const Navbar = () => {
               onCheckedChange={handleTheme}
               className="cursor-pointer"
             />
-            <Button size="lg" onClick={() => router.push("/dashboard/upload")}>
+            <Button size="lg" onClick={() => router.push("/dashboard/upload")} className="cursor-pointer">
               Get Started
             </Button>
           </div>
