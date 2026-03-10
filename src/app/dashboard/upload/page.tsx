@@ -299,7 +299,7 @@ export default function Upload() {
     if (!documents) return;
 
     console.log({ documents });
-  }, []);
+  }, [documents]);
 
   return (
     <>
