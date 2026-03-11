@@ -121,7 +121,7 @@ export default function Upload() {
 
           // 2. Update only that one
           const updated_subscription = subscriptions.map((sub) =>
-            sub.id === activePlan?.id
+            sub.id === activePlan.id
               ? {
                   ...sub,
                   conversions_done: sub.conversions_done + 1,
@@ -145,7 +145,7 @@ export default function Upload() {
     async (e: React.ChangeEvent<HTMLInputElement>) => {
       const file = e.target.files?.[0];
       setIsConverting(true);
-      console.time("execution time")
+      console.time("execution time");
       try {
         if (file) {
           const text = await extract_text(file);
@@ -179,15 +179,16 @@ export default function Upload() {
 
           // Cleanup
           window.URL.revokeObjectURL(url);
+
           const updated_subscription = subscriptions.map((sub) =>
-            sub.id === activePlan?.id
+            sub.id === activePlan.id
               ? {
                   ...sub,
                   conversions_done: sub.conversions_done + 1,
                 }
               : { ...sub },
           );
-
+          console.log({ updated_subscription });
           dispatch(initialSubscription(updated_subscription));
           if (doc) {
             dispatch(add_document(doc));
@@ -197,7 +198,7 @@ export default function Upload() {
         console.log("failed to convert: ", error);
       } finally {
         setIsConverting(false);
-         console.timeEnd("execution time")
+        console.timeEnd("execution time");
       }
     },
     [],
@@ -291,10 +292,10 @@ export default function Upload() {
   };
 
   useEffect(() => {
-    if (!documents) return;
+    if (!subscriptions) return;
 
-    console.log({ documents });
-  }, [documents]);
+    console.log({ subscriptions });
+  }, [subscriptions]);
 
   return (
     <>
