@@ -136,7 +136,7 @@ export default function Upload() {
         setIsConverting(false);
       }
     },
-    [documents, dispatch],
+    [documents, subscriptions, dispatch],
   );
 
   const handleFileSelect = useCallback(
@@ -145,10 +145,7 @@ export default function Upload() {
       const file = e.target.files?.[0];
       setIsConverting(true);
       console.time("execution time");
-      if (!subscriptions.length) {
-        console.log("subscriptions is empty");
-        return;
-      }
+
       try {
         if (file) {
           const text = await extract_text(file);
@@ -205,7 +202,7 @@ export default function Upload() {
         console.timeEnd("execution time");
       }
     },
-    [],
+    [documents, subscriptions, dispatch],
   );
 
   const addFiles = (newFiles: File[]) => {
