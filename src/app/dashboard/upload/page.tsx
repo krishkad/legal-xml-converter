@@ -143,6 +143,7 @@ export default function Upload() {
 
   const handleFileSelect = useCallback(
     async (e: React.ChangeEvent<HTMLInputElement>) => {
+      e.preventDefault();
       const file = e.target.files?.[0];
       setIsConverting(true);
       console.time("execution time");
@@ -180,6 +181,7 @@ export default function Upload() {
           // Cleanup
           window.URL.revokeObjectURL(url);
 
+          console.log({ subscription_before_update: subscriptions });
           const updated_subscription = subscriptions.map((sub) =>
             sub.id === activePlan.id
               ? {
