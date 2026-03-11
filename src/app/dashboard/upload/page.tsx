@@ -11,7 +11,6 @@ import {
 } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { extract_text } from "@/lib/extract-text";
-import { extractTextClientSide } from "@/lib/tesseract";
 import { calculatePercentage, getActiveSubscription } from "@/lib/utils";
 import { add_document } from "@/redux/slices/documents";
 import { initialSubscription } from "@/redux/slices/subscriptions";
@@ -28,7 +27,6 @@ import {
 } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Document as IDocument } from "@/generated/prisma/client";
 
 interface UploadFile {
   id: string;
@@ -147,6 +145,10 @@ export default function Upload() {
       const file = e.target.files?.[0];
       setIsConverting(true);
       console.time("execution time");
+      if(!subscriptions.length) {
+        console.log("subscriptions is empty")
+        return
+      }
       try {
         if (file) {
           const text = await extract_text(file);
