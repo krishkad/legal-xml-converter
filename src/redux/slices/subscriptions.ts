@@ -16,8 +16,15 @@ export const subscriptionsSlice = createSlice({
     initialSubscription: (state, action: PayloadAction<Subscription[]>) => {
       state.subscriptions = action.payload;
     },
+    updateCount: (state, action: PayloadAction<string>) => {
+      const sub = state.subscriptions.find((s) => s.id === action.payload);
+
+      if (sub) {
+        sub.conversions_done += 1;
+      }
+    },
   },
 });
 
-export const { initialSubscription } = subscriptionsSlice.actions;
+export const { initialSubscription, updateCount } = subscriptionsSlice.actions;
 export default subscriptionsSlice.reducer;

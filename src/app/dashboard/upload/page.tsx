@@ -13,7 +13,7 @@ import { Progress } from "@/components/ui/progress";
 import { extract_text } from "@/lib/extract-text";
 import { calculatePercentage, getActiveSubscription } from "@/lib/utils";
 import { add_document } from "@/redux/slices/documents";
-import { initialSubscription } from "@/redux/slices/subscriptions";
+import { initialSubscription, updateCount } from "@/redux/slices/subscriptions";
 import { RootState } from "@/redux/store";
 import {
   CheckCircle,
@@ -145,9 +145,9 @@ export default function Upload() {
       const file = e.target.files?.[0];
       setIsConverting(true);
       console.time("execution time");
-      if(!subscriptions.length) {
-        console.log("subscriptions is empty")
-        return
+      if (!subscriptions.length) {
+        console.log("subscriptions is empty");
+        return;
       }
       try {
         if (file) {
@@ -184,16 +184,16 @@ export default function Upload() {
           window.URL.revokeObjectURL(url);
 
           console.log({ subscription_before_update: subscriptions });
-          const updated_subscription = subscriptions.map((sub) =>
-            sub.id === activePlan.id
-              ? {
-                  ...sub,
-                  conversions_done: sub.conversions_done + 1,
-                }
-              : { ...sub },
-          );
-          console.log({ updated_subscription });
-          dispatch(initialSubscription(updated_subscription));
+          // const updated_subscription = subscriptions.map((sub) =>
+          //   sub.id === activePlan.id
+          //     ? {
+          //         ...sub,
+          //         conversions_done: sub.conversions_done + 1,
+          //       }
+          //     : sub,
+          // );
+          // console.log({ updated_subscription });
+          dispatch(updateCount(activePlan.id));
           if (doc) {
             dispatch(add_document(doc));
           }
