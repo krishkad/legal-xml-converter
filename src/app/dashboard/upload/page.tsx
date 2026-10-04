@@ -205,27 +205,6 @@ export default function Upload() {
     [documents, subscriptions, dispatch],
   );
 
-  const addFiles = (newFiles: File[]) => {
-    const validFiles = newFiles.filter((file) => {
-      const validTypes = [
-        "application/pdf",
-        "image/jpeg",
-        "image/png",
-        "image/jpg",
-      ];
-      return validTypes.includes(file.type);
-    });
-
-    const uploadFiles: UploadFile[] = validFiles.map((file) => ({
-      id: Math.random().toString(36).substr(2, 9),
-      file,
-      status: "pending",
-      progress: 0,
-    }));
-
-    setFiles((prev) => [...prev, ...uploadFiles]);
-  };
-
   const removeFile = (id: string) => {
     setFiles((prev) => prev.filter((file) => file.id !== id));
   };

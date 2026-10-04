@@ -14,7 +14,7 @@ const openai = new OpenAI({
 });
 
 export async function POST(req: NextRequest) {
-  console.time("route execution")
+  console.time("route execution");
   try {
     const token = req.cookies.get(
       `${process.env.COOKIE_NAME as string}`,
@@ -140,8 +140,8 @@ Edit
 ⚠️ Important: If any section is missing, use a placeholder like <article eId="artX"><paragraph>[Text not clearly extracted]</paragraph></article>. Do not skip structure. Strictly only return xml only. their should be no text outside the <?xml /> and <akomaNtoso tags. only return xml dont add anything else before xml and after xml. strickly only return xml only`;
 
     const response = await openai.chat.completions.create({
-      // model: "mistralai/mistral-nemo:free", // You can also try "deepseek/deepseek-coder"
-      model: "nvidia/nemotron-nano-12b-v2-vl:free",
+      model: "qwen/qwen3.8-27b:free",
+      // model: "nvidia/nemotron-3.5-lightning:free",
       messages: [
         {
           role: "user",
@@ -191,7 +191,7 @@ Edit
     xmlString = xmlString.replace(/[^\x00-\xFF]/g, "");
 
     const safeBuffer = Buffer.from(xmlString, "utf8");
-    console.timeEnd("route execution")
+    console.timeEnd("route execution");
     return new Response(safeBuffer, {
       status: 200,
       headers: {
