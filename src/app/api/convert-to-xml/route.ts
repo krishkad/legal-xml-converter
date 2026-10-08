@@ -140,7 +140,8 @@ Edit
 ⚠️ Important: If any section is missing, use a placeholder like <article eId="artX"><paragraph>[Text not clearly extracted]</paragraph></article>. Do not skip structure. Strictly only return xml only. their should be no text outside the <?xml /> and <akomaNtoso tags. only return xml dont add anything else before xml and after xml. strickly only return xml only`;
 
     const response = await openai.chat.completions.create({
-      model: "qwen/qwen3.8-27b:free",
+      // model: "qwen/qwen3.8-27b:free",
+      model: "poolside/laguna-s-2.1:free",
       // model: "nvidia/nemotron-3.5-lightning:free",
       messages: [
         {

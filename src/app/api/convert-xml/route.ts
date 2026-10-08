@@ -161,8 +161,9 @@ Edit
 ⚠️ Important: If any section is missing, use a placeholder like <article eId="artX"><paragraph>[Text not clearly extracted]</paragraph></article>. Do not skip structure. Strictly only return xml only. their should be no text outside the <?xml /> and <akomaNtoso tags. only return xml dont add anything else before xml and after xml. strickly only return xml only`;
 
     const response = await openai.chat.completions.create({
-      // model: "mistralai/mistral-nemo:free", // You can also try "deepseek/deepseek-coder"
-      model: "nvidia/nemotron-nano-12b-v2-vl:free",
+      model: "cohere/north-mini-code:free", // You can also try "deepseek/deepseek-coder"
+      // model: "nvidia/nemotron-nano-12b-v2-vl:free",
+      // model: "google/gemma-4-26b-a4b-it:free",
       messages: [
         {
           role: "user",
